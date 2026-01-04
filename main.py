@@ -7,7 +7,7 @@ from model.deterministic.invasion import critical_Eh, critical_Aext
 from model.deterministic.equilibria import plasmid_free_equilibrium, invasion_eigenvalue
 from model.deterministic.odes import run_odes
 from model.stochastic.pdmp import run_pdmp_scenarios
-from model.stochastic.statistics import extinction_probability, rescue_probability, mean_time_to_resistance
+from model.stochastic.statistics import extinction_probability, rescue_probability
 from model.utils.charts import plot_time_series, plot_ssa_trajectories
 
 def get_scenarios():
@@ -25,7 +25,7 @@ def get_scenarios():
         {
             "name": "Drug + plasmid + intrinsic efflux",
             "A_ext": 15.0,
-            "E_h": 12.0
+            "E_h": 2.0
         }
     ]
     return scenarios
@@ -89,7 +89,7 @@ def ssa_output(base_params):
 parser = argparse.ArgumentParser(description="Plasmid efflux dynamics model")
 parser.add_argument("--params", type=str, default="parameters/params.json", help="Path to parameter JSON file")
 parser.add_argument("--TMAX", type=int, default=50, help="Maximum time to run")
-parser.add_argument("--steps", type=int, default=50, help="Number of steps")
+parser.add_argument("--steps", type=int, default=100, help="Number of steps")
 args = parser.parse_args()
 
 if not os.path.exists(args.params):
