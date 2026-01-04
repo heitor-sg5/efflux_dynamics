@@ -61,14 +61,11 @@ def ssa_outcomes(sc, stats):
     print(f"\nScenario: {sc['name']}")
     print(f"Probability of plasmid extinction (Pext): {stats['P_ext']:.3f}")
     print(f"Probability of resistance rescue (Prescue): {stats['P_rescue']:.3f}")
-    print(f"Mean time to resistance (Tmean): {stats['T_mean']:.3f}")
 
 def ssa_output(base_params):
     start = time.time()
     ssa_results = {}
     scenarios = get_scenarios()
-
-    Q_res = 1.0
 
     for sc in scenarios:
         p = base_params.copy()
@@ -83,7 +80,6 @@ def ssa_output(base_params):
         stats = {
             "P_ext": extinction_probability(trajectories),
             "P_rescue": rescue_probability(trajectories),
-            "T_mean": mean_time_to_resistance(trajectories, Q_res),
         }
         ssa_outcomes(sc, stats)
 
