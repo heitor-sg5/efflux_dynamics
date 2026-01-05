@@ -1,7 +1,6 @@
 import numpy as np
 from model.stochastic.propensities import a1_, a2_
 
-
 def gillespie_step(p, state):
     A, P, M, Q = state
 

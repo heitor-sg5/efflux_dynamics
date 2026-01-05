@@ -77,3 +77,32 @@ def plot_ssa_trajectories(results, model_type):
     fig_path = os.path.join(fig_dir, "ssa_trajectories.png")
     fig.savefig(fig_path)
     plt.close(fig)
+
+def plot_growth_and_phase_diagram(Eh_vals, Aext_vals, growth_results, lambda_grid, cP, rP):
+    fig_dir = ensure_dir("ode")
+    fig, axs = plt.subplots(1, 2, figsize=(14, 5))
+
+    for Aext, data in growth_results.items():
+        axs[0].plot( data["Eh"], data["G_star"], label=f"A_ext = {Aext}")
+
+    axs[0].axhline( cP / rP, linestyle="--", color="black", label="cP/rP")
+    axs[0].set_xlabel("Intrinsic efflux Eh")
+    axs[0].set_ylabel("Growth rate G(A*)")
+    axs[0].set_title("Growth rescue by intrinsic efflux")
+    axs[0].legend()
+
+    Aext_mesh, Eh_mesh = np.meshgrid(Aext_vals, Eh_vals)
+
+    cmap = axs[1].contourf(Aext_mesh, Eh_mesh, lambda_grid, levels=30, cmap="coolwarm")
+    axs[1].contour( Aext_mesh, Eh_mesh, lambda_grid, levels=[0], colors="black", linewidths=2)
+
+    cbar = fig.colorbar(cmap, ax=axs[1])
+    cbar.set_label("Invasion eigenvalue λP")
+
+    axs[1].set_xlabel("Extracellular drug Aext")
+    axs[1].set_ylabel("Intrinsic efflux Eh")
+    axs[1].set_title("Plasmid invasion phase diagram")
+
+    plt.tight_layout()
+    plt.savefig(f"{fig_dir}/growth_and_invasion_phase.png")
+    plt.close()

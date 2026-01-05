@@ -1,5 +1,33 @@
 import numpy as np
 from scipy.integrate import solve_ivp
+import numpy as np
+
+def invasion_phase_data(base_params, Aext_vals, Eh_vals, ie):
+    lambda_grid = np.zeros((len(Eh_vals), len(Aext_vals)))
+    for i, Eh in enumerate(Eh_vals):
+        for j, Aext in enumerate(Aext_vals):
+            p = base_params.copy()
+            p["E_h"] = Eh
+            p["A_ext"] = Aext
+            lambda_grid[i, j] = ie(p)
+    return lambda_grid
+
+def efflux_growth_data(base_params, Eh_vals, Aext_vals, pfe):
+    results = {}
+    for Aext in Aext_vals:
+        G_star_list = []
+        for Eh in Eh_vals:
+            p = base_params.copy()
+            p["E_h"] = Eh
+            p["A_ext"] = Aext
+            A_star = pfe(p)
+            G_star = growth_rate(A_star, p)
+            G_star_list.append(G_star)
+        results[Aext] = {
+            "Eh": np.array(Eh_vals),
+            "G_star": np.array(G_star_list),
+        }
+    return results
 
 def growth_rate(A, p):
     return p['G_max'] * (1 / (1 + (A / p['IC50'])**p['h']))

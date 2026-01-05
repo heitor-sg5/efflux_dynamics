@@ -2,13 +2,14 @@ import json
 import argparse
 import os
 import time
+import numpy as np
 
 from model.deterministic.invasion import critical_Eh, critical_Aext
 from model.deterministic.equilibria import plasmid_free_equilibrium, invasion_eigenvalue
-from model.deterministic.odes import run_odes
+from model.deterministic.odes import run_odes, invasion_phase_data, efflux_growth_data
 from model.stochastic.pdmp import run_pdmp_scenarios
 from model.stochastic.statistics import extinction_probability, rescue_probability
-from model.utils.charts import plot_time_series, plot_ssa_trajectories
+from model.utils.charts import plot_time_series, plot_ssa_trajectories, plot_growth_and_phase_diagram
 
 def get_scenarios():
     scenarios = [
@@ -55,6 +56,14 @@ def ode_output(base_params):
         ode_results.update(run_odes(p, args.TMAX, sc))
 
     plot_time_series(ode_results, "ode")
+
+    Eh_vals = np.linspace(0.01, 5.0, 100)
+    Aext_vals = np.linspace(0.1, 30.0, 80)
+    lambda_grid = invasion_phase_data(base_params, Aext_vals, Eh_vals, invasion_eigenvalue)
+    Aext_slices = [5.0, 15.0, 25.0]
+    growth_results = efflux_growth_data(base_params, Eh_vals, Aext_slices, plasmid_free_equilibrium)
+    plot_growth_and_phase_diagram(Eh_vals, Aext_vals, growth_results, lambda_grid, base_params["c_P"], base_params["r_P"])
+
     print(f'\nRuntime: {(time.time() - start):.2f} seconds')
 
 def ssa_outcomes(sc, stats):
@@ -89,7 +98,7 @@ def ssa_output(base_params):
 parser = argparse.ArgumentParser(description="Plasmid efflux dynamics model")
 parser.add_argument("--params", type=str, default="parameters/params.json", help="Path to parameter JSON file")
 parser.add_argument("--TMAX", type=int, default=50, help="Maximum time to run")
-parser.add_argument("--steps", type=int, default=100, help="Number of steps")
+parser.add_argument("--steps", type=int, default=50, help="Number of steps")
 args = parser.parse_args()
 
 if not os.path.exists(args.params):
