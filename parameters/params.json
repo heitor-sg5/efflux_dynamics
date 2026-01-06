@@ -17,21 +17,21 @@
 
   "_meta": {
     "descriptions": {
-      "k_in": "Antimicrobial influx rate constant",
-      "k_out": "Efflux rate per unit efflux activity",
+      "k_in": "Antimicrobial influx",
+      "k_out": "Antimicrobial efflux",
       "A_ext": "Extracellular antimicrobial concentration",
-      "E_h": "Intrinsic host efflux activity",
-      "beta": "Efflux activity per efflux protein molecule",
-      "G_max": "Maximum growth rate in absence of antimicrobial",
+      "E_h": "Intrinsic host efflux",
+      "beta": "Plasmid-encoded efflux",
+      "G_max": "Growth in absence of antimicrobial",
       "IC50": "Intracellular antimicrobial concentration causing 50% growth inhibition",
       "h": "Hill coefficient for growth inhibition",
-      "r_P": "Plasmid replication rate per unit host growth",
-      "c_P": "Linear plasmid-associated fitness cost",
-      "gamma": "Nonlinear copy-number control parameter",
-      "k_m": "Transcription rate of efflux mRNA per plasmid copy",
-      "delta_m": "mRNA degradation rate",
-      "k_q": "Translation rate of efflux protein per mRNA molecule",
-      "delta_q": "Protein degradation or dilution rate"
+      "r_P": "Plasmid replication",
+      "c_P": "Plasmid fitness cost",
+      "gamma": "Copy-number control",
+      "k_m": "Transcription",
+      "delta_m": "mRNA degradation",
+      "k_q": "Translation",
+      "delta_q": "Protein degradation/dilution"
     }
   }
 }
