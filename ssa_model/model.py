@@ -75,38 +75,33 @@ def run_pdmp(p, TMAX, ode_model):
 
 def run_pdmp_scenarios(base_params, TMAX, steps, ode_model):
     results = {}
-
     E_A_values = [(0.0, 0.0), (15.0, 0.0), (15.0, 2.0)]
     t_grid = np.linspace(0, TMAX, 500)
 
     for a, e in E_A_values:
-        A_runs = []
-        P_runs = []
-        M_runs = []
-        Q_runs = []
+        A_runs = np.zeros((steps, len(t_grid)))
+        P_runs = np.zeros((steps, len(t_grid)))
+        M_runs = np.zeros((steps, len(t_grid)))
+        Q_runs = np.zeros((steps, len(t_grid)))
 
         params = base_params.copy()
         params['E_h'] = e
         params['A_ext'] = a
 
-        for _ in range(steps):
+        for run_idx in range(steps):
             traj = run_pdmp(params, TMAX, ode_model)
             t = traj['t']
-            A_interp = np.interp(t_grid, t, traj['A'])
-            P_interp = np.interp(t_grid, t, traj['P'])
-            M_interp = np.interp(t_grid, t, traj['M'])
-            Q_interp = np.interp(t_grid, t, traj['Q'])
-            A_runs.append(A_interp)
-            P_runs.append(P_interp)
-            M_runs.append(M_interp)
-            Q_runs.append(Q_interp)
+            A_runs[run_idx, :] = np.interp(t_grid, t, traj['A'])
+            P_runs[run_idx, :] = np.interp(t_grid, t, traj['P'])
+            M_runs[run_idx, :] = np.interp(t_grid, t, traj['M'])
+            Q_runs[run_idx, :] = np.interp(t_grid, t, traj['Q'])
 
         results[(a, e)] = {
             't': t_grid,
-            'A': np.array(A_runs),
-            'P': np.array(P_runs),
-            'M': np.array(M_runs),
-            'Q': np.array(Q_runs)
+            'A': A_runs,
+            'P': P_runs,
+            'M': M_runs,
+            'Q': Q_runs
         }
 
     return results
