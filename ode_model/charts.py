@@ -20,7 +20,7 @@ def plot_time_series(results):
         axs[i].plot(t, P, label='P')
         axs[i].plot(t, M, label='M')
         axs[i].plot(t, Q, label='Q')
-        axs[i].set_title(f'Time Series at E_h={e}, A_ext={a}')
+        axs[i].set_title(f'Time Series at Eh={e}, Aext={a}')
         axs[i].set_xlabel('Time')
         if i == 0:
             axs[i].set_ylabel('State value')
