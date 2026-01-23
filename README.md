@@ -10,7 +10,7 @@ The central question addressed is:
 
 To answer this, the project implements:
 - A deterministic intracellular ODE model
-- A hybrid stochastic–deterministic PDMP (piecewise-deterministic Markov process)
+- A hybrid stochastic-deterministic PDMP (piecewise-deterministic Markov process)
 
 Both frameworks track intracellular antimicrobial concentration, plasmid copy number, efflux gene expression, and growth inhibition. Resistance emerges as a race between antimicrobial toxicity and plasmid-driven efflux expression, rather than as a fixed genetic trait.
 
