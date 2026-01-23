@@ -42,14 +42,14 @@ def ode_system(t, y, p):
 
 def run_time_series(base_params, TMAX):
     results = {}
-    E_A_values=[(0.0, 0.0), (15.0, 0.0), (15.0, 2.0)]
+    A_E_values=[(0.0, 0.0), (15.0, 0.0), (15.0, 2.0)]
     t_eval = np.linspace(0, TMAX, 500)
-    for a, e in E_A_values:
+    for a, e in A_E_values:
         params = base_params.copy()
         params['E_h'] = e
         params['A_ext'] = a
         sol = solve_ivp(lambda t, y: ode_system(t, y, params), [0, TMAX], y0, t_eval=t_eval)
-        results[(e, a)] = sol
+        results[(a, e)] = sol
     return results
 
 def run_invasion(base_params):
@@ -81,8 +81,8 @@ def run_efflux_sweep(base_params):
     return results
 
 def analyse_ode_results(base_params):
-    E_A_values=[(0.0, 0.0), (15.0, 0.0), (15.0, 2.0)]
-    for a, e in E_A_values:
+    A_E_values = [(0.0, 0.0), (15.0, 0.0), (15.0, 2.0)]
+    for a, e in A_E_values:
         params = base_params.copy()
         params['E_h'] = e
         params['A_ext'] = a

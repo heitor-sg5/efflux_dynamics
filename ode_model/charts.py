@@ -10,9 +10,9 @@ def ensure_figures_dir():
 
 def plot_time_series(results):
     fig_dir = ensure_figures_dir()
-    E_A_values = sorted(results.keys())
-    fig, axs = plt.subplots(1, len(E_A_values), figsize=(18, 5), sharey=False)
-    for i, (a, e) in enumerate(E_A_values):
+    A_E_values = sorted(results.keys())
+    fig, axs = plt.subplots(1, len(A_E_values), figsize=(18, 5), sharey=False)
+    for i, (a, e) in enumerate(A_E_values):
         sol = results[(a, e)]
         t = sol.t
         A, P, M, Q = sol.y
