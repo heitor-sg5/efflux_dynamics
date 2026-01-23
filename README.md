@@ -5,9 +5,8 @@
 Antimicrobial resistance is commonly treated as a binary cellular trait, classifying cells as either resistant or sensitive. In contrast, this project models resistance as an emergent, time-dependent intracellular phenotype arising from feedback between antimicrobial accumulation, host growth, plasmid copy-number dynamics, and delayed expression of plasmid-encoded efflux pumps.
 
 The central question addressed is:
-```
-Can weak intrinsic host efflux activity sustain sufficient growth under antimicrobial pressure to permit plasmid copy-number amplification and delayed expression of plasmid-encoded efflux pumps, ultimately leading to full resistance, even when plasmid-encoded resistance alone is initially insufficient?
-```
+
+*Can weak intrinsic host efflux activity sustain sufficient growth under antimicrobial pressure to permit plasmid copy-number amplification and delayed expression of plasmid-encoded efflux pumps, ultimately leading to full resistance, even when plasmid-encoded resistance alone is initially insufficient?*
 
 To answer this, the project implements:
 - A deterministic intracellular ODE model
