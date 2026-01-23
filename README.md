@@ -139,7 +139,11 @@ Right: Antimicrobial exposure with intrinsic efflux activity present. Despite de
 
 ## References
 
-- Hernández-Beltrán, J.C.R., San Millán, A., Fuentes-Hernández, A. and Peña-Miller, R. (2021). Mathematical Models of Plasmid Population Dynamics. Frontiers in Microbiology, 12. Available at: https://pmc.ncbi.nlm.nih.gov/articles/PMC8600371/ 
+- Hernández-Beltrán, J.C.R., San Millán, A., Fuentes-Hernández, A. and Peña-Miller, R. (2021). Mathematical Models of Plasmid Population Dynamics. Frontiers in Microbiology, 12. Available at: https://pmc.ncbi.nlm.nih.gov/articles/PMC8600371/
+
+- Stewart, F.M. and Levin, B.R. (1977). THE POPULATION BIOLOGY OF BACTERIAL PLASMIDS: A PRIORI CONDITIONS FOR THE EXISTENCE OF CONJUGATIONALLY TRANSMITTED FACTORS. Genetics, 87(2), pp.209–228. Available at: https://pmc.ncbi.nlm.nih.gov/articles/instance/1213735/
+
+- Prensky, H., Gomez‐Simmonds, A., Uhlemann, A. and Lopatkin, A.J. (2021). Conjugation dynamics depend on both the plasmid acquisition cost and the fitness cost. Molecular Systems Biology, 17(3). Available at: https://pmc.ncbi.nlm.nih.gov/articles/PMC7919528/
 
 - Nolivos, S., Cayron, J., Dedieu, A., Page, A., Delolme, F. and Lesterlin, C. (2019). Role of AcrAB-TolC multidrug efflux pump in drug-resistance acquisition by plasmid transfer. Science, 364(6442), pp.778–782. Available at: https://www.science.org/doi/10.1126/science.aav6390
 
